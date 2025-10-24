@@ -1,0 +1,18 @@
+---
+- name: Demo
+  hosts: localhost
+  tasks:
+  - name: create new sandbox
+    custom.bankx.sandbox:
+      api_token: "<token>"
+      api_endpoint: "<endpoint>"
+      name: "team-alpha-sbx"
+      owner_email: "team-alpha@bankx.com"
+      size: "small"
+      ttl_days: 30
+      allowed_cidrs: ["0.0.0.0/0"]
+      state: "present"
+    register: out
+  - name: dump output
+    debug:
+      msg: '{{ out }}'
